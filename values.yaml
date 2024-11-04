@@ -1,0 +1,56 @@
+databaseUpgradeReady: true
+unifiedUpgradeAllowed: true
+networkpolicy:
+  - name: postgresql
+    podSelector:
+      matchLabels:
+        app: postgresql
+    ingress:
+      - from:
+          - podSelector:
+              matchLabels:
+                app: artifactory
+ingress:
+  className: nginx
+  namespace: tools
+  enabled: true
+  defaultBackend:
+    enabled: true
+  annotations:
+    nginx.ingress.kubernetes.io/proxy-body-size: 500m
+    service.beta.kubernetes.io/aws-load-balancer-scheme: internet-facing
+    service.beta.kubernetes.io/aws-load-balancer-type: nlb
+    service.beta.kubernetes.io/aws-load-balancer-backend-protocol: ssl
+    service.beta.kubernetes.io/aws-load-balancer-ssl-ports: "443"
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    cert-manager.io/private-key-rotation-policy: Always
+  labels:
+    name: artifactory
+  tls:
+    - hosts:
+        - tooling.artifactory.fncdev.online
+      secretName: tooling.artifactory.fncdev.online
+  ingressClassName: nginx
+  rules:
+    - host: tooling.artifactory.fncdev.online
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: artifactory
+                port:
+                  number: 8082
+
+
+
+# nginx:
+#   enabled: true
+#   hosts:
+#     - tooling.artifactory.fncdev.online
+#   service:
+#     type: LoadBalancer
+#   # controller:
+#   #   extraArgs:
+#   #     default-ssl-certificate: "tooling.artifactory.fncdev.online"

@@ -44,3 +44,18 @@ variable "autoscaling_maximum_size_by_az" {
   type        = number
   description = "Maximum number of EC2 instances to autoscale our EKS cluster on each AZ."
 }
+
+variable "aws_region" {
+  type        = string
+  description = ""
+}
+
+variable "domain_name" {
+  type = string
+  description = "my domain name"
+}
+
+variable "subdomain" {
+  type = string
+  description = "my sub domain"
+}

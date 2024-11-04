@@ -11,11 +11,11 @@ spec:
     solvers:
     - selector:
         dnsZones:
-          - "fnc.dns-dynamic.net"
+          - "fncdev.online"
       dns01:
         route53:
           region: us-west-1
-          role: "arn:aws:iam::992382613070:role/cert-manager" # This must be set so cert-manager what role to attempt to authenticate with
+          role: "arn:aws:iam::992382613070:role/cert-manager-role" # This must be set so cert-manager what role to attempt to authenticate with
           auth:
             kubernetes:
               serviceAccountRef:

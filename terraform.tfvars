@@ -12,3 +12,7 @@ developer_users                = ["k8s-Admin"]
 asg_instance_types             = [{ instance_type = "t3.medium" }, { instance_type = "t2.medium" }, ]
 autoscaling_minimum_size_by_az = 1
 autoscaling_maximum_size_by_az = 10
+
+aws_region  = "us-west-1"
+domain_name = "fncdev.online"
+subdomain   = "tooling.artifactory.fncdev.online"
