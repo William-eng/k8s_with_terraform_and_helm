@@ -50,7 +50,6 @@ module "eks_cluster" {
 
 # Wait for eks cluster to be ready
 resource "time_sleep" "wait_for_cluster" {
-  # depends_on      = [module.eks_cluster]
   create_duration = "30s"
 }
 
@@ -69,7 +68,6 @@ module "ebs_csi_eks_role" {
     }
   }
   depends_on = [
-    # time_sleep.wait_for_cluster,
     module.eks_cluster
   ]
 }
@@ -112,15 +110,6 @@ resource "aws_eks_addon" "ebs_csi_driver" {
 }
 
 
-
-
-# # Attach aws managed AmazonEBSCSIDriverPolicy to the IAM role
-# resource "aws_iam_role_policy_attachment" "ebs_csi_driver_policy_attachment" {
-#   policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonEBSCSIDriverPolicy"
-#   role       = module.ebs_csi_eks_role.iam_role_name
-# }
-
-
 # Update Kubeconfig After Cluster Creation
 resource "null_resource" "update_kubeconfig" {
 
@@ -136,7 +125,6 @@ resource "null_resource" "update_kubeconfig" {
     cluster_name     = module.eks_cluster.cluster_name
   }
   depends_on = [
-    # time_sleep.wait_for_cluster
     module.eks_cluster
   ]
 }
