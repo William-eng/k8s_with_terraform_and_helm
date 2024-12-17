@@ -20,7 +20,7 @@ resource "helm_release" "ingress_nginx_controller" {
     <<EOF
     controller:
       extraArgs:
-        default-ssl-certificate: "tools/tooling.artifactory.fncdev.online"
+        default-ssl-certificate: "tools/tooling.artifactory.liberttinnii.xyz"
     EOF
   ]
 

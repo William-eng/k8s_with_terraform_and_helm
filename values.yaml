@@ -28,11 +28,11 @@ ingress:
     name: artifactory
   tls:
     - hosts:
-        - tooling.artifactory.fncdev.online
-      secretName: tooling.artifactory.fncdev.online
+        - tooling.artifactory.liberttinnii.xyz
+      secretName: tooling.artifactory.liberttinnii.xyz
   ingressClassName: nginx
   rules:
-    - host: tooling.artifactory.fncdev.online
+    - host: tooling.artifactory.liberttinnii.xyz
       http:
         paths:
           - path: /
@@ -48,9 +48,9 @@ ingress:
 # nginx:
 #   enabled: true
 #   hosts:
-#     - tooling.artifactory.fncdev.online
+#     - tooling.artifactory.liberttinnii.xyz
 #   service:
 #     type: LoadBalancer
 #   # controller:
 #   #   extraArgs:
-#   #     default-ssl-certificate: "tooling.artifactory.fncdev.online"
+#   #     default-ssl-certificate: "tooling.artifactory.liberttinnii.xyz"

@@ -5,9 +5,10 @@
 # TF_VAR_skip_route53=true TF_VAR_skip_helm=true terraform apply -auto-approve
 
 # # Configure kubeconfig for EKS cluster
-# echo "Configuring kubeconfig for EKS cluster..."
-# aws eks update-kubeconfig --name tooling-app-eks --region us-west-1 --kubeconfig ./kubeconfig
+# echo "Configuring kubeconfig for EKS cluster..." 
 
+#sudo aws eks update-kubeconfig --name tooling-app-eks --region us-west-1 --kubeconfig ./kubeconfig
+#sudo -E aws eks --region us-east-1 update-kubeconfig --name tooling-app-eks --kubeconfig /root/.kube/config
 # # Verify kubeconfig creation
 # if [[ ! -f "./kubeconfig" ]]; then
 #   echo "Error: kubeconfig file not created."
@@ -29,8 +30,8 @@
 
 
 
-# kubectl delete certificate tooling.artifactory.fnc.dns-dynamic.net -n tools
-# kubectl delete certificaterequest tooling.artifactory.fnc.dns-dynamic.net-1 -n tools
+# kubectl delete certificate tooling.artifactory.liberttinnii.xyz -n tools
+# kubectl delete certificaterequest tooling.artifactory.liberttinnii.xyz-1 -n tools
 
 # kubectl logs -l app=cert-manager -n cert-manager -f
 
